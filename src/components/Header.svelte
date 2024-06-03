@@ -13,9 +13,9 @@
 
   <div class="h-12 items-center">
     {#if $user.id}
-      <a href="/logout"><p class="py-2 md:py-px">{$user.name}({$user.id})</p></a>
+      <a href="/#/logout"><p class="py-2 md:py-px">로그아웃</p></a>
     {:else}
-      <a href="/login"><p class="py-2 md:py-px">로그인</p></a>
+      <a href="/#/login"><p class="py-2 md:py-px">로그인</p></a>
     {/if}
   </div>
 </header>
