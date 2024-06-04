@@ -1,0 +1,57 @@
+<script>
+  import { Button, Modal, Label, Input, Spinner } from "flowbite-svelte";
+  import { openLoginModal, user, openInfoModal, infoModalContent } from "../utils/store";
+  import { getTokenWithCredentials, loginWithToken } from "../utils/http";
+  import { onMount } from "svelte";
+
+  let token = null;
+  let infoDetails = { title: "", message: "", color: "" };
+  const processLogin = async (e) => {
+    try {
+      token = await getTokenWithCredentials(e.target.form.email.value, e.target.form.password.value);
+      if (token) {
+        localStorage.setItem("token", token);
+        $user = await loginWithToken(token);
+        $openLoginModal = false;
+        $infoModalContent = { title: "로그인 성공", message: "로그인에 성공했습니다!", color: "green" };
+      } else {
+        $infoModalContent = { title: "로그인 실패", message: "로그인에 실패하였습니다. 아이디와 비밀번호를 다시 확인해주세요.", color: "red" };
+      }
+    } catch (e) {
+      console.error(e);
+      $infoModalContent = { title: "로그인 오류", message: "로그인에 과정에서 오류가 발생했습니다.", color: "red" };
+    } finally {
+      $openInfoModal = true;
+    }
+  };
+
+  onMount(async () => {
+    token = localStorage.getItem("token");
+    if (token) {
+      $user = await loginWithToken(token);
+    }
+  });
+</script>
+
+<Modal bind:open={$openLoginModal} size="xs" autoclose={false} class="w-full">
+  <form class="flex flex-col space-y-6" action="#">
+    <div>
+      <h3 class="mb-1 text-xl font-medium text-gray-900 dark:text-white">로그인</h3>
+      <p class="text-gray-500 text-sm">로그인하여 퀴즈를 등록할 수 있습니다!</p>
+      <p class="text-gray-500 text-sm">회원가입하거나 아래 테스트계정으로 로그인해보세요</p>
+    </div>
+    <Label class="space-y-2">
+      <span>Email</span>
+      <Input type="email" name="email" placeholder="name@company.com" required />
+    </Label>
+    <Label class="space-y-2">
+      <span>Password</span>
+      <Input type="password" name="password" placeholder="•••••" required />
+    </Label>
+    <Button on:click={processLogin} class="w-full1">로그인</Button>
+    <div class="text-sm font-medium text-gray-500 dark:text-gray-300">
+      계정이 없으신가요? <a href="/#/register" class="text-primary-700 hover:underline dark:text-primary-500"> 회원가입 </a>
+    </div>
+    <p class="text-gray-500 text-xs">*Test Account: test@example.com / test1234</p>
+  </form>
+</Modal>
