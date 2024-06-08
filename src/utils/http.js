@@ -50,3 +50,5 @@ export const submitQuiz = async (session, answers) => {
     await new Promise(resolve => setTimeout(resolve, 1000));
     return { "correct": 7, "total": 10 }
 }
+
+export const createQuiz = async (name, img, tags, quizs) => { return 4726 }
