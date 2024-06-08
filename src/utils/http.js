@@ -28,16 +28,25 @@ export const loginWithToken = async (token) => {
 
 export const getQuiz = async (quizId, quizCount) => {
     await new Promise(resolve => setTimeout(resolve, 1000));
-    return [
-        { "id": 1, "question": "질문1", "answers": ["답1", "답2", "답3", "답4"] },
-        { "id": 2, "question": "질문2", "answers": ["답1", "답2", "답3", "답4"] },
-        { "id": 3, "question": "질문3", "answers": ["답1", "답2", "답3", "답4"] },
-        { "id": 4, "question": "질문4", "answers": ["답1", "답2", "답3", "답4"] },
-        { "id": 5, "question": "질문5", "answers": ["답1", "답2", "답3", "답4"] },
-        { "id": 6, "question": "질문6", "answers": ["답1", "답2", "답3", "답4"] },
-        { "id": 7, "question": "질문7", "answers": ["답1", "답2", "답3", "답4"] },
-        { "id": 8, "question": "질문8", "answers": ["답1", "답2", "답3", "답4"] },
-        { "id": 9, "question": "질문9", "answers": ["답1", "답2", "답3", "답4"] },
-        { "id": 10, "question": "질문10", "answers": ["답1", "답2", "답3", "답4"] },
-    ]
+    return {
+        name: "퀴즈 이름",
+        quiz:
+            [
+                { "id": 1, "question": "질문1", "answers": ["답1", "답2", "답3", "답4"] },
+                { "id": 2, "question": "질문2", "answers": ["답1", "답2", "답3", "답4"] },
+                { "id": 3, "question": "질문3", "answers": ["답1", "답2", "답3", "답4"] },
+                { "id": 4, "question": "질문4", "answers": ["답1", "답2", "답3", "답4"] },
+                { "id": 5, "question": "질문5", "answers": ["답1", "답2", "답3", "답4"] },
+                { "id": 6, "question": "질문6", "answers": ["답1", "답2", "답3", "답4"] },
+                { "id": 7, "question": "질문7", "answers": ["답1", "답2", "답3", "답4"] },
+                { "id": 8, "question": "질문8", "answers": ["답1", "답2", "답3", "답4"] },
+                { "id": 9, "question": "질문9", "answers": ["답1", "답2", "답3", "답4"] },
+                { "id": 10, "question": "질문10", "answers": ["답1", "답2", "답3", "답4"] },
+            ], session: "sadfsadf-asfdsadfd-fsdffds-fsdfs"
+    }
+}
+
+export const submitQuiz = async (session, answers) => {
+    await new Promise(resolve => setTimeout(resolve, 1000));
+    return { "correct": 7, "total": 10 }
 }

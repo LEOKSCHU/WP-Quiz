@@ -5,12 +5,14 @@
   import Header from "./components/Header.svelte";
   import Home from "./routes/Home.svelte";
   import Quiz from "./routes/Quiz.svelte";
+  import QuizMake from "./routes/QuizMake.svelte";
 
   import { openInfoModal, infoModalContent, user } from "./utils/store";
 
   const routes = {
     "/": Home,
     "/quiz/:quizId": Quiz,
+    "/make": QuizMake,
     //"/edit/:quizId": QuizEdit,
   };
 </script>

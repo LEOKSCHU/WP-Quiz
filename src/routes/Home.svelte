@@ -1,5 +1,5 @@
 <script>
-  import { ButtonGroup, Spinner, InputAddon, Input } from "flowbite-svelte";
+  import { ButtonGroup, Spinner, InputAddon, Input, Button } from "flowbite-svelte";
   import { searchQuizCollection } from "../utils/http";
   import SearchCard from "../components/SearchCard.svelte";
   let data = [];
@@ -13,6 +13,7 @@
     <InputAddon>🔍</InputAddon>
     <Input id="input-addon" placeholder="Search..." on:keydown={(e) => (data = searchQuizCollection(e.target.value))} />
   </ButtonGroup>
+  <Button color="alternative" class="ml-1" on:click={() => (location.href = "/#/make")}>퀴즈등록</Button>
 </div>
 
 <div class="flex flex-row flex-wrap justify-center mb-10">
