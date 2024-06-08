@@ -1,14 +1,16 @@
 <script>
   import Router from "svelte-spa-router";
-  import { Footer, Modal, Button, Spinner } from "flowbite-svelte";
+  import { Footer, Modal, Button } from "flowbite-svelte";
 
   import Header from "./components/Header.svelte";
-  import { openInfoModal, infoModalContent } from "./utils/store";
   import Home from "./routes/Home.svelte";
-  import { user } from "./utils/store";
+  import Quiz from "./routes/Quiz.svelte";
+
+  import { openInfoModal, infoModalContent, user } from "./utils/store";
+
   const routes = {
     "/": Home,
-    //"/quiz/:quizId": Quiz,
+    "/quiz/:quizId": Quiz,
     //"/edit/:quizId": QuizEdit,
   };
 </script>

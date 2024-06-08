@@ -41,13 +41,13 @@
 
 <Modal title={`${searchData.name}(#${searchData.id})`} bind:open={modalOpen} autoclose>
   <div>
-    <p class="text-gray-900 font-bold text-md mb-0.5">{searchData.name}</p>
-    <p class="text-gray-500 font-normal mb-0.5 text-xs">제작자: {searchData.author}</p>
-    <p class="text-gray-500 font-normal mb-0.5 text-xs">총 문항수: {searchData.questionsCount}</p>
-    <p class="text-gray-500 font-normal mb-0.5 text-xs">태그: {searchData.tags.join(", ")}</p>
+    <p class="text-gray-900 font-bold text-lg mb-0.5">{searchData.name}</p>
+    <p class="text-gray-500 font-normal mb-0.5 text-sm">제작자: {searchData.author}</p>
+    <p class="text-gray-500 font-normal mb-0.5 text-sm">총 문항수: {searchData.questionsCount}</p>
+    <p class="text-gray-500 font-normal mb-0.5 text-sm">태그: {searchData.tags.join(", ")}</p>
   </div>
   <hr />
-  <p class="text-gray-500 font-normal mb-2 text-xs">{searchData.description}</p>
+  <p class="text-gray-500 font-normal mb-2 text-sm">{searchData.description}</p>
   <hr />
   <div class="flex space-x-2 justify-center">
     <div class="w-max">
