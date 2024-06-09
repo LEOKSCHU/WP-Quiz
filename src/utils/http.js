@@ -1,5 +1,5 @@
 import axios from 'axios';
-const API_BASE = "http://192.168.1.28:8000/v1";
+const API_BASE = import.meta.env.VITE_API_BASE;
 import { openInfoModal, infoModalContent } from "../utils/store";
 
 
