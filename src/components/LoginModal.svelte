@@ -15,8 +15,6 @@
         $user = await loginWithToken(token);
         $openLoginModal = false;
         $infoModalContent = { title: "로그인 성공", message: "로그인에 성공했습니다!", color: "green" };
-      } else {
-        $infoModalContent = { title: "로그인 실패", message: "로그인에 실패하였습니다. 아이디와 비밀번호를 다시 확인해주세요.", color: "red" };
       }
     } catch (e) {
       console.error(e);
@@ -27,12 +25,10 @@
   };
   const processRegister = async (e) => {
     try {
-      res = await registerAccount(e.target.form.email.value, e.target.form.password.value, e.target.form.name.value);
+      let res = await registerAccount(e.target.form.email.value, e.target.form.password.value, e.target.form.name.value);
       if (res) {
         openRegisterModal = false;
         $infoModalContent = { title: "회원가입 성공", message: "회원가입에 성공했습니다!", color: "green" };
-      } else {
-        $infoModalContent = { title: "회원가입 실패", message: "회원가입에 실패하였습니다.", color: "red" };
       }
     } catch (e) {
       console.error(e);

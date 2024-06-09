@@ -1,3 +1,34 @@
+import axios from 'axios';
+const API_BASE = "http://localhost:8000/v1";
+import { openInfoModal, infoModalContent } from "../utils/store";
+
+
+export const getTokenWithCredentials = async (email, password) => {
+    // get token from API_BASE/v1/auth/login
+    try {
+        let response = await axios.post(`${API_BASE}/auth/login`, { email, password });
+        return response.data.accessToken
+
+    } catch (e) {
+        infoModalContent.set({ title: "로그인 실패", message: e.response.data.detail, color: "red" });
+    }
+}
+
+export const registerAccount = async (email, password, name) => {
+    try {
+        let response = await axios.post(`${API_BASE}/auth/register`, { email, password, name });
+        return response.data
+
+    } catch (e) {
+        infoModalContent.set({ title: "회원가입 실패", message: e.response.data.detail, color: "red" });
+    }
+}
+export const loginWithToken = async (token) => {
+    let response = await axios.get(`${API_BASE}/auth/me`, { headers: { Authorization: `Bearer ${token}` } })
+    return response.data
+}
+
+
 export const searchQuizCollection = async (value) => {
     await new Promise(resolve => setTimeout(resolve, 1000));
     return [
@@ -13,18 +44,6 @@ export const searchQuizCollection = async (value) => {
     ]
 }
 
-export const getTokenWithCredentials = async (email, password) => {
-    await new Promise(resolve => setTimeout(resolve, 1000));
-    return "token"
-}
-
-export const registerAccount = async (email, password, name) => {
-    await new Promise(resolve => setTimeout(resolve, 1000));
-}
-export const loginWithToken = async (token) => {
-    await new Promise(resolve => setTimeout(resolve, 1000));
-    return { "name": "레오", "email": "331leo@outlook.com" }
-}
 
 export const getQuiz = async (quizId, quizCount) => {
     await new Promise(resolve => setTimeout(resolve, 1000));
