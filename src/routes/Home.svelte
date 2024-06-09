@@ -15,7 +15,6 @@
   </ButtonGroup>
   <Button color="alternative" class="ml-1" on:click={() => (location.href = "/#/make")}>퀴즈등록</Button>
 </div>
-
 <div class="flex flex-row flex-wrap justify-center mb-10">
   {#await data}
     <Spinner />

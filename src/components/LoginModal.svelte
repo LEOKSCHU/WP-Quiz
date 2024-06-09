@@ -89,7 +89,7 @@
     </div>
     <Label class="space-y-2">
       <span>Nickname</span>
-      <Input type="name" name="name" placeholder="홍길동" required />
+      <Input type="text" name="name" placeholder="홍길동" required />
     </Label>
     <Label class="space-y-2">
       <span>Email</span>
