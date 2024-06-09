@@ -3,9 +3,9 @@
   import { getQuiz, submitQuiz } from "../utils/http";
 
   export let params;
-  let URLParams = new URLSearchParams(window.location.search);
-  let quizCount = URLParams.get("quizCount") || 5;
-  let quizCollection = getQuiz(params.quizId, quizCount);
+  let quizCount = params.quizCount || 5;
+  console.log(quizCount);
+  let quizCollection = getQuiz(params.quizId, params.quizCount);
   let myAnswers = {};
   let currentQuiz = 1;
   let submitModalOpen = false;
@@ -30,7 +30,7 @@
         <p class="mb-5 text-md md:text-lg font-medium text-gray-900 dark:text-white">답을 선택하세요:</p>
         <div class="grid gap-6 w-full">
           {#each quiz.answers as answer}
-            <Radio name="custom" custom on:change={onRadioChange} value={quiz.answers.indexOf(answer) + 1}>
+            <Radio name="custom" custom on:change={onRadioChange} value={quiz.answers.indexOf(answer)}>
               <div class="justify-between items-center p-4 lg:p-6 w-full text-gray-500 bg-white rounded-lg border border-gray-200 cursor-pointer dark:hover:text-gray-300 dark:border-gray-700 dark:peer-checked:text-primary-500 peer-checked:border-primary-600 peer-checked:text-primary-600 hover:text-gray-600 hover:bg-gray-100 dark:text-gray-400 dark:bg-gray-800 dark:hover:bg-gray-700">
                 <div>
                   <div class="w-full text-sm md:text-md lg:text-lg font-semibold">{answer}</div>

@@ -6,7 +6,7 @@
   let openModal = false;
   let questionCount = 5;
   let quizzes = {};
-  let tags = [];
+  let tags = {};
   let quizId;
   let resultModalOpen = false;
   const putAnswer = (qusetionIndex, index, answer) => {
@@ -14,6 +14,11 @@
       quizzes[qusetionIndex]["answers"] = {};
     }
     quizzes[qusetionIndex]["answers"][index] = answer;
+  };
+
+  const putTag = (index, tag) => {
+    tags[index] = tag;
+    console.log(tags);
   };
 
   onMount(async () => {
@@ -24,12 +29,15 @@
       openModal = true;
     }
   });
-  const submit = async (title, author, img, tags, quizzes) => {
-    let res = await createQuiz(title, author, img, tags, quizzes);
-    quizId = res.quizId;
+  const submit = async (title, description, author, img, tags, quizzes) => {
+    let res = await createQuiz(title, description, author, img, tags, quizzes);
+    quizId = res;
     resultModalOpen = true;
     console.log(quizzes);
   };
+  if (!$user.name) {
+    openModal = true;
+  }
 </script>
 
 <h1 class="text-4xl md:text-5xl lg:text-6xl">LeoK Quiz</h1>
@@ -44,6 +52,25 @@
     <Label class="space-y-2 text-left">
       <span class="text-md md:text-lg">퀴즈 제목</span>
       <Input type="text" name="title" placeholder="캐릭터 맞추기 퀴즈" size="md" required />
+    </Label>
+    <Label class="space-y-2 text-left">
+      <span class="text-md md:text-lg">퀴즈 설명</span>
+      <Input type="text" name="description" placeholder="이 퀴즈는 정말 어렵습니다!" size="md" required />
+    </Label>
+    <Label class="text-left space-y-2 ">
+      <p>태그</p>
+      <div class="grid grid-cols-2 lg:grid-cols-4">
+        {#each { length: 4 } as _, j}
+          <Input
+            type="text"
+            on:change={(e) => {
+              putTag(j + 1, e.target.value);
+            }}
+            placeholder={`태그${j + 1}`}
+            required
+          />
+        {/each}
+      </div>
     </Label>
 
     <Label class="space-y-2 text-left">
@@ -147,7 +174,7 @@
           $openInfoModal = true;
           return;
         } else {
-          submit(e.target.form.title.value, e.target.form.author.value, e.target.form.image.value, tags, quizzes);
+          submit(e.target.form.title.value, e.target.form.description.value, e.target.form.author.value, e.target.form.image.value, tags, quizzes);
         }
       }}>퀴즈 등록</Button
     >

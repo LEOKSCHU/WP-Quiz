@@ -25,7 +25,7 @@
   <div class=" p-4 flex flex-col justify-between leading-normal">
     <div class="mb-8">
       <div class="text-gray-900 font-bold text-md mb-0.5 lg:text-lg overflow-hidden">
-        {searchData.name}
+        {searchData.title}
       </div>
       <span class="text-gray-500 font-normal mb-2 text-xs lg:text-sm overflow-hidden">
         By {searchData.author}
@@ -39,9 +39,9 @@
   </div>
 </div>
 
-<Modal title={`${searchData.name}(#${searchData.id})`} bind:open={modalOpen} autoclose>
+<Modal title={`${searchData.title}(#${searchData.id})`} bind:open={modalOpen} autoclose>
   <div>
-    <p class="text-gray-900 font-bold text-lg mb-0.5">{searchData.name}</p>
+    <p class="text-gray-900 font-bold text-lg mb-0.5">{searchData.title}</p>
     <p class="text-gray-500 font-normal mb-0.5 text-sm">제작자: {searchData.author}</p>
     <p class="text-gray-500 font-normal mb-0.5 text-sm">총 문항수: {searchData.questionsCount}</p>
     <p class="text-gray-500 font-normal mb-0.5 text-sm">태그: {searchData.tags.join(", ")}</p>
@@ -56,7 +56,7 @@
     </div>
     <Button
       on:click={() => {
-        location.href = `/#/quiz/${searchData.id}?quizCount=${quizCount}`;
+        location.href = `/#/quiz/${searchData.id}/${quizCount}`;
       }}>시작하기</Button
     >
   </div>

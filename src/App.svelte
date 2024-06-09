@@ -11,7 +11,7 @@
 
   const routes = {
     "/": Home,
-    "/quiz/:quizId": Quiz,
+    "/quiz/:quizId/:quizCount": Quiz,
     "/make": QuizMake,
     //"/edit/:quizId": QuizEdit,
   };

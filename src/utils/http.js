@@ -1,5 +1,5 @@
 import axios from 'axios';
-const API_BASE = "http://localhost:8000/v1";
+const API_BASE = "http://192.168.1.28:8000/v1";
 import { openInfoModal, infoModalContent } from "../utils/store";
 
 
@@ -29,8 +29,9 @@ export const loginWithToken = async (token) => {
 }
 
 
-export const searchQuizCollection = async (value) => {
-    await new Promise(resolve => setTimeout(resolve, 1000));
+export const searchQuizCollection = async (query) => {
+    let response = await axios.get(`${API_BASE}/quiz/search`, { params: { query } })
+    return response.data.data
     return [
         { "id": 1, "name": "Quiz 1", "description": "Quiz 1 description", "questionsCount": 22, "author": "Quiz Author", "image": "https://t4.ftcdn.net/jpg/03/16/68/69/360_F_316686992_OvCTP1wfazJhBeMrBBDUGooufSmj2O8G.jpg", "tags": ["태그1", "HTML", "프로그래밍", "코딩", "개발자"] },
         { "id": 2, "name": "Quiz 2", "description": "Quiz 2 description", "questionsCount": 54, "author": "Quizz Author", "image": "https://t4.ftcdn.net/jpg/03/16/68/69/360_F_316686992_OvCTP1wfazJhBeMrBBDUGooufSmj2O8G.jpg", "tags": ["태그1", "HTML", "프로그래밍", "코딩", "개발자"] },
@@ -46,6 +47,8 @@ export const searchQuizCollection = async (value) => {
 
 
 export const getQuiz = async (quizId, quizCount) => {
+    let response = await axios.get(`${API_BASE}/quiz/${quizId}?quizCount=${quizCount}`)
+    return response.data
     await new Promise(resolve => setTimeout(resolve, 1000));
     return {
         name: "퀴즈 이름",
@@ -66,12 +69,15 @@ export const getQuiz = async (quizId, quizCount) => {
 }
 
 export const submitQuiz = async (session, answers) => {
+    let response = await axios.post(`${API_BASE}/quiz/submit`, { session, answers })
+    return response.data
     await new Promise(resolve => setTimeout(resolve, 1000));
     return { "correct": 7, "total": 10 }
 }
 
-export const createQuiz = async (title, author, img, tags, quizzes) => {
-    await new Promise(resolve => setTimeout(resolve, 1000));
-    console.log({ title, author, img, tags, quizzes })
+export const createQuiz = async (title, description, author, img, tags, quizzes) => {
+    let response = await axios.post(`${API_BASE}/quiz/create`, { title, description, author, img, tags, quizzes });
+    return response.data.id
+    console.log({ title, description, author, img, tags, quizzes })
     return { "quizId": 4726 }
 }
