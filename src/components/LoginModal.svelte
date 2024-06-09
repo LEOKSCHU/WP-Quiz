@@ -82,6 +82,7 @@
     <div>
       <h3 class="mb-1 text-xl font-medium text-gray-900 dark:text-white">회원가입</h3>
       <p class="text-gray-500 text-sm">닉네임은 퀴즈를 등록할때 전체공개로 표시됩니다.</p>
+      <p class="text-gray-500 text-sm">비밀번호는 SHA256로 해싱되어 안전하게 저장됩니다.</p>
     </div>
     <Label class="space-y-2">
       <span>Nickname</span>
